@@ -1,0 +1,8 @@
+{
+  "features": [{
+    "featureName": "allwaysTrueFeature",
+    "variants": [{
+      "value": true
+    }]
+  }]
+}

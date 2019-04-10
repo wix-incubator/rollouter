@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./test/**/*.ts",
+    "./src/**/*.spec.ts"
+  ],
+}
