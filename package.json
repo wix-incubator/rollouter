@@ -20,7 +20,8 @@
     "@types/jest": "^24.0.11",
     "jest": "^24.7.1",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.3"
+    "typescript": "^3.4.3",
+    "uuid4": "^1.1.4"
   },
   "jest": {
     "transform": {
@@ -37,5 +38,9 @@
       "json",
       "node"
     ]
+  },
+  "dependencies": {
+    "@types/md5": "^2.1.33",
+    "md5": "^2.2.1"
   }
 }
