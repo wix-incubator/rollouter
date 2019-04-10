@@ -28,5 +28,9 @@ describe('Rollouter', () => {
     it('should conduct false feature', () => {
       expect(instance.conduct('allwaysFalseFeature')).toEqual(false);
     });
+
+    it('should conduct unknown feature', () => {
+      expect(instance.conduct('unknown')).toEqual(undefined);
+    });
   });
 });
