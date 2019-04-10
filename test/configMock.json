@@ -4,5 +4,10 @@
     "variants": [{
       "value": true
     }]
+  }, {
+    "featureName": "allwaysFalseFeature",
+    "variants": [{
+      "value": false
+    }]
   }]
 }

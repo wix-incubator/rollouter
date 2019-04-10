@@ -19,10 +19,14 @@ describe('Rollouter', () => {
     });
   });
 
-  describe.skip('conduct', () => {
+  describe('conduct', () => {
+    const instance = re.config(configMock);
     it('should conduct single experiment', () => {
-      const instance = re.config(configMock);
-      expect(instance.conduct('myfeature')).toEqual(true);
+      expect(instance.conduct('allwaysTrueFeature')).toEqual(true);
+    });
+
+    it('should conduct false feature', () => {
+      expect(instance.conduct('allwaysFalseFeature')).toEqual(false);
     });
   });
 });
