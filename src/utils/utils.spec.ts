@@ -10,7 +10,7 @@ describe('distribution', () => {
         const distributions: number[] = [];
         for (let i = 0; i < 50; i++) {
             let itemsInBucket = 0;
-            const controlShareDistributionNumber = arr.length / share
+            const controlShareDistributionNumber = arr.length / share;
 
             arr.forEach((uuid: string) => (toss(uuid) >= (1 - (1 / share))) && itemsInBucket++);
 
