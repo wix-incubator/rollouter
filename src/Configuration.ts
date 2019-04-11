@@ -16,29 +16,23 @@ export class Configuration {
   getFeatures({user, featureName}: {user?: User, featureName?: string}): Array<Feature> {
     let filteredFeatures: Array<FeatureConfig> = this.config.features;
 
-    filteredFeatures = typeof featureName !== 'undefined' && this.config.features.filter(feature => {
-      return feature.featureName === featureName;
-    }) || filteredFeatures;
+    if (featureName) {
+        filteredFeatures = this.config.features.filter(f => f.featureName === featureName);
+    }
 
     const userLabels = user && user.getLabels() || {};
 
 
-    filteredFeatures = filteredFeatures.filter(feature => {
-      const featureLabelNames = Object.keys(feature.includes || {});
-
-      return featureLabelNames.every(labelName => {
-        const requiredLabel = feature.includes[labelName];
-        const userLabel = userLabels[labelName];
-        if (Array.isArray(requiredLabel)) {
-          return requiredLabel.includes(userLabel);
-        } else {
-          return requiredLabel === userLabel;
-        }
-      });
-    });
-
-    return filteredFeatures.map(feature => new Feature(feature));
-  }
+   return filteredFeatures
+        .filter(feature => {
+            const featureLabelNames = Object.keys(feature.includes || {});
+            return featureLabelNames.every(labelName => {
+                const [requiredLabel, userLabel] = [feature.includes[labelName], userLabels[labelName]];
+                return Array.isArray(requiredLabel) ? requiredLabel.includes(userLabel) : requiredLabel === userLabel;
+            });
+        })
+        .map(feature => new Feature(feature));
+}
 
   getRaw(): Config {
     return this.config;
