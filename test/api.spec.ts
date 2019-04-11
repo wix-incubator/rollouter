@@ -22,11 +22,11 @@ describe('Rollouter', () => {
   describe('conduct', () => {
     const instance = re.config(configMock);
     it('should conduct single experiment', () => {
-      expect(instance.conduct('allwaysTrueFeature')).toEqual(true);
+      expect(instance.conduct('alwaysTrueFeature')).toEqual(true);
     });
 
     it('should conduct false feature', () => {
-      expect(instance.conduct('allwaysFalseFeature')).toEqual(false);
+      expect(instance.conduct('alwaysFalseFeature')).toEqual(false);
     });
 
     it('should conduct unknown feature', () => {
@@ -47,9 +47,9 @@ describe('Rollouter', () => {
       expect(userScoped.conduct('registeredUserTrue')).toEqual(true);
     });
 
-    it('should not conduct feature for user not included in label', () => {
+    it('should return default feature value for user not included in label', () => {
       const userScoped = instance.user('qwe', {registered: false});
-      expect(userScoped.conduct('registeredUserTrue')).toEqual(null);
+      expect(userScoped.conduct('registeredUserTrue')).toEqual(false);
     });
   });
 });

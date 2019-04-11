@@ -1,29 +1,52 @@
 {
-  "features": [{
-    "featureName": "allwaysTrueFeature",
-    "variants": [{
-      "value": true
-    }]
-  }, {
-    "featureName": "allwaysFalseFeature",
-    "variants": [{
-      "value": false
-    }]
-  }, {
-    "featureName": "registeredUserTrue",
-    "includes": {
-      "registered": true
+  "features": {
+    "alwaysTrueFeature": {
+      "default": true
     },
-    "variants": [{
-      "value": true
-    }]
-  }, {
-    "featureName": "unregisteredUserTrue",
-    "includes": {
-      "registered": false
+    "usFeature": {
+      "default": false,
+      "experiments": [
+        {
+          "includes": {
+            "geo": [
+              "US"
+            ]
+          },
+          "variants": [
+            {
+              "slice": 0.5,
+              "value": true
+            }
+          ]
+        }
+      ]
     },
-    "variants": [{
-      "value": true
-    }]
-  }]
+    "alwaysFalseFeature": {
+      "default": false
+    },
+    "registeredUserTrue": {
+      "default": false,
+      "experiments": [
+        {
+          "includes": {
+            "registered": true
+          },
+          "variants": [{
+            "value": true,
+            "slice": 1
+          }]
+        }
+      ]
+    },
+    "unregisteredUserTrue": {
+      "default": true,
+      "experiments": [
+        {
+          "includes": {
+            "registered": false
+          }
+        }
+      ]
+    }
+  }
 }

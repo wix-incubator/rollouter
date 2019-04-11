@@ -24,7 +24,7 @@ export class Rollouter {
     if (typeof config === 'undefined') {
       return this.configuration.getRaw();
     } else {
-      return new Rollouter({config});
+      return new Rollouter({config, user: this.userData});
     }
   }
 
@@ -40,10 +40,11 @@ export class Rollouter {
 
 
   public conduct(featureName: string) {
-    const feature = this.configuration.getFeatures({featureName, user: this.userData});
-    if (feature && feature[0]) {
-      return feature[0].conduct()
+    const feature = this.configuration.getByName(featureName);
+    if (feature) {
+      return feature.conduct(this.userData);
     }
+
     return null;
   }
 }

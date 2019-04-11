@@ -1,11 +1,25 @@
+type Value = number | string | boolean;
+
+interface variant {
+    "slice": number,
+    "value": Value
+}
+
+export interface Experiment {
+    includes?: { [key: string]: Value | Array<Value> };
+    excludes?: { [key: string]: Value | Array<Value> };
+    variants?: variant[];
+}
+
 export type FeatureConfig = {
-  featureName: string;
-  includes?: {[key: string]: IncludesValue | Array<IncludesValue>}
-  variants: any;
+    default: string | boolean | number;
+    experiments?: Experiment[];
 };
 
 export type Config = {
-  features?: Array<FeatureConfig>,
+    features?: {
+        [key: string]: FeatureConfig;
+    }
 };
 
-type IncludesValue = number | string | boolean;
+
