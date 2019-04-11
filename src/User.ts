@@ -12,6 +12,10 @@ export class User {
   getLabels(): UserLabels {
     return this.labels;
   }
+
+  getId(): string{
+    return this.id;
+  }
 }
 
 export type UserLabels = {[key: string]: number | string | boolean};

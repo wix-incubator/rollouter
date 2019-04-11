@@ -1,5 +1,6 @@
 import {Experiment, FeatureConfig} from './config';
 import {User, UserLabels} from "./User";
+import {toss} from "./utils";
 
 export class Feature {
     constructor(private feature: FeatureConfig, private name: string) {
@@ -22,7 +23,24 @@ export class Feature {
             return feature.default;
         }
 
-        return experiment.variants && experiment.variants[0] ? experiment.variants[0].value : feature.default;
+        let lastValue = 0;
+        type Value = string | number | boolean;
+        const buckets: [Value, number][] = [];
+
+        experiment.variants.forEach(({value, slice}: { value: Value, slice: number }) => {
+            const curr: [Value, number] = [value, slice + lastValue];
+            lastValue += slice;
+
+            buckets.push(curr);
+        });
+
+        const userToss = toss(user.getId() + this.name);
+
+        console.log(user.getId(), userToss);
+
+        const bucket = buckets.find(b => b[1] > userToss);
+
+        return bucket ? bucket[0] : feature.default;
     }
 
     findMatchedExperiment(userLabels: UserLabels): Experiment | null {

@@ -1,7 +1,6 @@
 import {Configuration} from './Configuration';
 import {Feature} from './Feature';
 import * as configMock from '../test/configMock.json';
-import {User} from './User';
 
 describe('configuration', () => {
   const configuration = new Configuration(configMock);

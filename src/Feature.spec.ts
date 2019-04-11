@@ -1,5 +1,4 @@
 import {Feature} from './Feature';
-import * as configMock from '../test/configMock.json';
 import {User} from "./User";
 
 describe('Feature', () => {
@@ -32,7 +31,69 @@ describe('Feature', () => {
                 expect(feature.conduct(new User('me', {registered: true}))).toEqual(('notDefault'))
             });
         });
-        // it('should conduct value when ')
+
+
+        describe('depends on slice', () => {
+            const featureDef = {
+                "default": false,
+                "experiments": [
+                    {
+                        variants: [
+                            {
+                                value: true,
+                                slice: .5
+                            }
+                        ]
+                    }
+                ]
+            };
+            const feature = new Feature(featureDef, '');
+
+            describe('users belonging to bucket 1', () => {
+                it('should get true', () => {
+                    expect(feature.conduct(new User('alien' ))).toEqual((true))
+                });
+            });
+
+            describe('users belonging to bucket 2', () => {
+                it('should get false', () => {
+                    expect(feature.conduct(new User('me'))).toEqual((false))
+                });
+            });
+        });
+
+        describe('depends on feature', () => {
+            const featureDef = {
+                "default": false,
+                "experiments": [
+                    {
+                        variants: [
+                            {
+                                value: true,
+                                slice: .5
+                            }
+                        ]
+                    }
+                ]
+            };
+            //test11 - is magic string. For hash function
+            const feature = new Feature(featureDef, 'test11');
+
+            describe('users belonging to bucket 1', () => {
+                it('should get true', () => {
+                    expect(feature.conduct(new User('alien' ))).toEqual((false))
+                });
+            });
+
+            describe('users belonging to bucket 2', () => {
+                it('should get false', () => {
+                    expect(feature.conduct(new User('me'))).toEqual((true))
+                });
+            });
+
+
+        });
+
     });
 
     describe('findMatchedExperiment', () => {
