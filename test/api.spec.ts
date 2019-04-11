@@ -30,7 +30,26 @@ describe('Rollouter', () => {
     });
 
     it('should conduct unknown feature', () => {
-      expect(instance.conduct('unknown')).toEqual(undefined);
+      expect(instance.conduct('unknown')).toEqual(null);
+    });
+  });
+
+  describe('user', () => {
+    const instance = re.config(configMock);
+
+    it('should bind user to instance', () => {
+      const instance = re.user('qwe');
+      expect(instance.user()).toHaveProperty('id', 'qwe');
+    });
+
+    it('should conduct feature for user by label', () => {
+      const userScoped = instance.user('qwe', {registered: true});
+      expect(userScoped.conduct('registeredUserTrue')).toEqual(true);
+    });
+
+    it('should not conduct feature for user not included in label', () => {
+      const userScoped = instance.user('qwe', {registered: false});
+      expect(userScoped.conduct('registeredUserTrue')).toEqual(null);
     });
   });
 });

@@ -1,14 +1,19 @@
 import {FeatureConfig} from './config';
 
 export class Feature {
-  constructor(private features: Array<FeatureConfig>) {
+  constructor(private feature: FeatureConfig) {
 
   }
 
+  getName() {
+    return this.feature.featureName;
+  }
+
   conduct(){
-    const feature = this.features[0];
+    const feature = this.feature;
     if (feature) {
-      return feature.variants && feature.variants[0] ? feature.variants[0].value : undefined;
+      return feature.variants && feature.variants[0] ? feature.variants[0].value : null;
     }
+    return null;
   }
 }

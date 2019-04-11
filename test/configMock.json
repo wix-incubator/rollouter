@@ -9,5 +9,21 @@
     "variants": [{
       "value": false
     }]
+  }, {
+    "featureName": "registeredUserTrue",
+    "includes": {
+      "registered": true
+    },
+    "variants": [{
+      "value": true
+    }]
+  }, {
+    "featureName": "unregisteredUserTrue",
+    "includes": {
+      "registered": false
+    },
+    "variants": [{
+      "value": true
+    }]
   }]
 }
