@@ -2,7 +2,8 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "sourceMap": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "declaration": true
   },
   "include": [
     "./src/**/*.spec.ts",
