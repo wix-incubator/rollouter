@@ -80,7 +80,10 @@ const config = {
             default: false,
             experiments: [{
                includes: {
-                   geo: [US,UK]
+                   geo: ["US","UK"]
+               },
+               exclude: {
+                   registered: false,
                },
                variants: [{
                    slice: 0.1,
@@ -104,4 +107,4 @@ rollouter
     .user(user.id, {'geo': 'US', eyes:'brown'})
     .conduct('feature1');
 ```
-New feature will see 10% of users from USA and UK and all users with blue eyes.
+A new feature will see 10% of users from USA and UK except unregistered and all users with blue eyes. Please note that we do not consider user registration with blue eyes.
