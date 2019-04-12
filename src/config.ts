@@ -1,8 +1,8 @@
 export type Value = number | string | boolean;
 
 export interface Variant {
-    "slice": number,
-    "value": Value
+    'slice': number,
+    'value': Value
 }
 
 export interface Experiment {

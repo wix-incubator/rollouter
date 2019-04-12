@@ -31,10 +31,12 @@
           "includes": {
             "registered": true
           },
-          "variants": [{
-            "value": true,
-            "slice": 1
-          }]
+          "variants": [
+            {
+              "value": true,
+              "slice": 1
+            }
+          ]
         }
       ]
     },
@@ -45,6 +47,25 @@
           "includes": {
             "registered": false
           }
+        }
+      ]
+    },
+    "registeredUserTrueWithExcluded": {
+      "default": "false",
+      "experiments": [
+        {
+          "includes": {
+            "imIncluded": true
+          },
+          "excludes": {
+            "imExcluded": true
+          },
+          "variants": [
+            {
+              "value": "true",
+              "slice": 1
+            }
+          ]
         }
       ]
     }

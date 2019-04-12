@@ -1,14 +1,14 @@
 import {Feature} from './Feature';
-import {User} from "./User";
+import {User} from './User';
 
 describe('Feature', () => {
     describe('conduct', () => {
         const featureDef = {
-            "default": 'thedefault',
-            "experiments": [
+            'default': 'thedefault',
+            'experiments': [
                 {
-                    "includes": {
-                        "registered": true
+                    'includes': {
+                        'registered': true
                     },
                     variants: [
                         {
@@ -20,23 +20,18 @@ describe('Feature', () => {
             ]
         };
         const feature = new Feature(featureDef, 'testFeature');
-        describe('when no user provided', () => {
-            it('should return default value', () => {
-                expect(feature.conduct()).toEqual('thedefault');
-            });
+        it('should return default value when no user provided', () => {
+            expect(feature.conduct()).toEqual('thedefault');
         });
 
-        describe('when user provided', () => {
-            it('should return value from experiment that match user labels', () => {
-                expect(feature.conduct(new User('me', {registered: true}))).toEqual(('notDefault'))
-            });
+        it('should return value from experiment that match user labels when user provided', () => {
+            expect(feature.conduct(new User('me', {registered: true}))).toEqual(('notDefault'))
         });
-
 
         describe('depends on slice', () => {
             const featureDef = {
-                "default": false,
-                "experiments": [
+                'default': false,
+                'experiments': [
                     {
                         variants: [
                             {
@@ -49,23 +44,19 @@ describe('Feature', () => {
             };
             const feature = new Feature(featureDef, '');
 
-            describe('users belonging to bucket 1', () => {
-                it('should get true', () => {
-                    expect(feature.conduct(new User('alien' ))).toEqual((true))
-                });
+            it('should belong to bucket 1', () => {
+                expect(feature.conduct(new User('alien'))).toEqual((true))
             });
 
-            describe('users belonging to bucket 2', () => {
-                it('should get false', () => {
-                    expect(feature.conduct(new User('me'))).toEqual((false))
-                });
+            it('should not belong to bucket 2', () => {
+                expect(feature.conduct(new User('me'))).toEqual((false))
             });
         });
 
         describe('depends on feature', () => {
             const featureDef = {
-                "default": false,
-                "experiments": [
+                'default': false,
+                'experiments': [
                     {
                         variants: [
                             {
@@ -79,18 +70,13 @@ describe('Feature', () => {
             //test11 - is magic string. For hash function
             const feature = new Feature(featureDef, 'test11');
 
-            describe('users belonging to bucket 1', () => {
-                it('should get true', () => {
-                    expect(feature.conduct(new User('alien' ))).toEqual((false))
-                });
+            it('should belong to bucket 1', () => {
+                expect(feature.conduct(new User('alien'))).toEqual((false))
             });
 
-            describe('users belonging to bucket 2', () => {
-                it('should get false', () => {
-                    expect(feature.conduct(new User('me'))).toEqual((true))
-                });
+            it('should not belong to bucket 2', () => {
+                expect(feature.conduct(new User('me'))).toEqual((true))
             });
-
 
         });
 
@@ -100,11 +86,11 @@ describe('Feature', () => {
         it('should return experiment suitable for user', () => {
             const featureName = 'registeredUserTrue';
             const featureDef = {
-                "default": true,
-                "experiments": [
+                'default': true,
+                'experiments': [
                     {
-                        "includes": {
-                            "registered": true
+                        'includes': {
+                            'registered': true
                         }
                     }
                 ]
@@ -121,11 +107,11 @@ describe('Feature', () => {
         it('should return false', () => {
             const featureName = 'registeredUserTrue';
             const feature = new Feature({
-                "default": true,
-                "experiments": [
+                'default': true,
+                'experiments': [
                     {
-                        "includes": {
-                            "registered": true
+                        'includes': {
+                            'registered': true
                         }
                     }
                 ]

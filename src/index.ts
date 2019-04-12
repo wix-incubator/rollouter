@@ -1,6 +1,6 @@
-import {Config, Value, Variant} from './config';
+import {Config, Value} from './config';
 import {Configuration} from './Configuration';
-import {User, UserLabels, UserData} from './User';
+import {User, UserData, UserLabels} from './User';
 import {Feature} from './Feature';
 
 export class Rollouter {
@@ -40,7 +40,7 @@ export class Rollouter {
     }
 
 
-    public conduct(): Value[] | null;
+    public conduct(): { [featureName: string]: Value }[] | null;
     public conduct(featureName: string): Value | null;
     public conduct(featureName?: string) {
         if (featureName) {
@@ -50,7 +50,11 @@ export class Rollouter {
             const features = this.configuration.getRaw().features;
             return Object.keys(features)
                 .map(featureName => (new Feature(features[featureName], featureName)))
-                .map((feature: Feature) => feature.conduct(this.userData)) || null;
+                .map((feature: Feature) => {
+                    const featureResult = feature.conduct(this.userData);
+                    return typeof featureResult !== 'undefined' ? ({[feature.getName()]: featureResult}) : null;
+                })
+                .filter(Boolean) || null;
         }
     }
 

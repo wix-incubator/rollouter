@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/wix-incubator/rollouter#readme",
   "dependencies": {
+    "i": "^0.3.6",
     "md5": "^2.2.1"
   },
   "devDependencies": {
