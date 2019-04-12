@@ -68,3 +68,40 @@ rollouter
     .user(user.id)
     .conduct('feature1');
 ```
+
+
+#### Include users by any parameter
+In the following case, 50% of users will receive `old version`, 20% and 30% for `new value 1` and `new value 2`
+```js
+import rollouter from 'rollouter';
+const config = {
+    features:{
+        FancyButton:{
+            default: false,
+            experiments: [{
+               includes: {
+                   geo: [US,UK]
+               },
+               variants: [{
+                   slice: 0.1,
+                   value: true,
+                }]
+            },{
+                includes: {
+                    eyes: 'blue',
+                },
+                variants: [{
+                     slice: 1,
+                     value: true,
+                }]
+            }]
+        },
+    },
+};
+
+rollouter
+    .config(config)
+    .user(user.id, {'geo': 'US', eyes:'brown'})
+    .conduct('feature1');
+```
+New feature will see 10% of users from USA and UK and all users with blue eyes.
