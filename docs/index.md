@@ -4,4 +4,5 @@ title: Rollouter
 description: Cryptograpty based, feature toggle / AB-test library.
 permalink: /
 ---
-<h1>Rollouter</h1>
+
+# Rollouter
