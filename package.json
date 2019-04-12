@@ -2,7 +2,7 @@
   "name": "rollouter",
   "version": "1.0.0",
   "description": "Simple distributed feature flags/AB tests lib",
-  "main": "index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "test": "jest",
     "build": "npx tsc"
@@ -43,5 +43,8 @@
   },
   "dependencies": {
     "md5": "^2.2.1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
