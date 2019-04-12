@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vshuhaiev/rollouter.git"
+    "url": "git+https://github.com/wix-incubator/rollouter.git"
   },
   "author": "Volodymyr Shuhaiev <volodymyrs@wix.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vshuhaiev/rollouter/issues"
+    "url": "https://github.com/wix-incubator/rollouter/issues"
   },
-  "homepage": "https://github.com/vshuhaiev/rollouter#readme",
+  "homepage": "https://github.com/wix-incubator/rollouter#readme",
   "dependencies": {
     "md5": "^2.2.1"
   },
