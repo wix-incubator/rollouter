@@ -41,7 +41,7 @@ same IP you'll keep getting same value all the time.
 ### Congrats you've got:
 ### A {#featureValue}
 
-<script src="https://unpkg.com/rollouter/dist/index.js"></script>
+<script src="https://unpkg.com/rollouter@1.0.12/dist/index.js"></script>
 <script>
 fetch('https://myip.addr.space/ip')
   .then(function(ipResponse){return ipResponse.text()})
