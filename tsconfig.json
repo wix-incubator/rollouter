@@ -3,6 +3,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "resolveJsonModule": true,
+    "moduleResolution": "node",
     "declaration": true,
     "target": "es2015"
   },
@@ -10,5 +11,9 @@
     "./src/**/*.spec.ts",
     "./test/**/*.ts",
     "./src/**/*.spec.ts"
+  ],
+  "files": [
+    "./src/index.ts",
+    "./src/umd.ts"
   ]
 }
