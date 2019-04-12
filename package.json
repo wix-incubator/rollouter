@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": false,
   "description": "Simple distributed feature flags/AB tests lib",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "build": "npx tsc",
+    "build": "webpack --config webpack.config.js --mode=production",
     "release": "wnpm-release -- --no-shrinkwrap"
   },
   "repository": {
@@ -24,13 +24,21 @@
     "md5": "^2.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "@types/jest": "^24.0.11",
     "@types/md5": "^2.1.33",
     "@wix/wnpm-ci": "^6.1.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "jest": "^24.7.1",
     "ts-jest": "^24.0.2",
+    "ts-loader": "^5.3.3",
     "typescript": "^3.4.3",
-    "uuid4": "^1.1.4"
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "uuid4": "^1.1.4",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
