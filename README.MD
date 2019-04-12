@@ -66,7 +66,5 @@ const config = {
 rollouter
     .config(config)
     .user(user.id)
-    .conduct('feature1'); //true
-
-rollouter.conduct('feature2') //false
+    .conduct('feature1');
 ```
