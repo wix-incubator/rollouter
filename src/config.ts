@@ -1,6 +1,6 @@
-type Value = number | string | boolean;
+export type Value = number | string | boolean;
 
-interface variant {
+export interface Variant {
     "slice": number,
     "value": Value
 }
@@ -8,11 +8,11 @@ interface variant {
 export interface Experiment {
     includes?: { [key: string]: Value | Array<Value> };
     excludes?: { [key: string]: Value | Array<Value> };
-    variants?: variant[];
+    variants?: Variant[];
 }
 
 export type FeatureConfig = {
-    default: string | boolean | number;
+    default: Value;
     experiments?: Experiment[];
 };
 

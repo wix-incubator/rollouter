@@ -1,6 +1,6 @@
-import {Experiment, FeatureConfig} from './config';
-import {User, UserLabels} from "./User";
-import {toss} from "./utils";
+import {Experiment, FeatureConfig, Value} from './config';
+import {User, UserLabels} from './User';
+import {toss} from './utils';
 
 export class Feature {
     constructor(private feature: FeatureConfig, private name: string) {
@@ -10,7 +10,7 @@ export class Feature {
         return this.name;
     }
 
-    conduct(user?: User) {
+    conduct(user?: User): Value {
         const feature = this.feature;
 
         if (!user) {
@@ -24,7 +24,6 @@ export class Feature {
         }
 
         let lastValue = 0;
-        type Value = string | number | boolean;
         const buckets: [Value, number][] = [];
 
         experiment.variants.forEach(({value, slice}: { value: Value, slice: number }) => {
@@ -40,7 +39,7 @@ export class Feature {
 
         const bucket = buckets.find(b => b[1] > userToss);
 
-        return bucket ? bucket[0] : feature.default;
+        return (bucket ? bucket[0] : feature.default) as Value;
     }
 
     findMatchedExperiment(userLabels: UserLabels): Experiment | null {
@@ -50,22 +49,14 @@ export class Feature {
 
 
         return this.feature.experiments.find(({includes = {}, excludes = {}}) => {
-            const excludesNames = Object.keys(excludes);
-            const isExcluded = excludesNames.some(excludeName => {
-                return !isEqual(excludes[excludeName], userLabels[excludeName]);
-            });
-
-            if (isExcluded) {
+            if (
+                Object.keys(excludes).some(excludeName => isEqual(excludes[excludeName], userLabels[excludeName]))
+            ) {
                 return false;
             }
 
-            const includesNames = Object.keys(includes);
+            return Object.keys(includes).every(includeName => isEqual(includes[includeName], userLabels[includeName]));
 
-            const isIncludes = includesNames.every(includeName => {
-                return isEqual(includes[includeName], userLabels[includeName]);
-            });
-
-            return isIncludes;
         }) || null;
     }
 }

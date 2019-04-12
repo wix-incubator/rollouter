@@ -4,7 +4,8 @@
   "description": "Simple distributed feature flags/AB tests lib",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",
