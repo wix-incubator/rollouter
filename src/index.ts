@@ -48,7 +48,7 @@ export class Rollouter {
             return feature ? feature.conduct(this.userData) : null
         } else {
             const features = this.configuration.getRaw().features;
-            return Object.keys(features)
+            return features && Object.keys(features)
                 .map(featureName => (new Feature(features[featureName], featureName)))
                 .map((feature: Feature) => {
                     const featureResult = feature.conduct(this.userData);

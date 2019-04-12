@@ -66,6 +66,11 @@ describe('Rollouter', () => {
                 });
                 expect(instancePerUser.conduct()).toEqual([{'alwaysTrueFeature': true}, {'usFeature': true}, {'alwaysFalseFeature': false}, {'registeredUserTrue': true}, {'unregisteredUserTrue': true}, {'registeredUserTrueWithExcluded': 'false'}]);
             });
+
+            it('should return null if no features specified', () => {
+                const instance = re.config({}).user('que');
+                expect(instance.conduct()).toBeNull();
+            });
         });
     });
 
