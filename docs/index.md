@@ -46,7 +46,7 @@ same IP you'll keep getting same value all the time.
 fetch('https://myip.addr.space/ip')
   .then(function(ipResponse){return ipResponse.text()})
   .then(function(ip){
-    var featureValue = Rollouter.config({
+    var featureValue = rollouter.config({
       features: {
         myFeature: {
           default: 'A',
