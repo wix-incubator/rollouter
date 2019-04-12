@@ -104,7 +104,7 @@ const config = {
 
 rollouter
     .config(config)
-    .user(user.id, {'geo': 'US', eyes:'brown'})
+    .user(user.id, {'geo': 'US', eyes:'brown', registered: true})
     .conduct('feature1');
 ```
 A new feature will see 10% of users from USA and UK except unregistered and all users with blue eyes. Please note that we do not consider user registration with blue eyes.
