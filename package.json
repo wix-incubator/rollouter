@@ -21,6 +21,7 @@
   "homepage": "https://github.com/wix-incubator/rollouter#readme",
   "dependencies": {
     "i": "^0.3.6",
+    "jekyll": "^3.0.0-beta1",
     "md5": "^2.2.1"
   },
   "devDependencies": {
