@@ -35,8 +35,6 @@ export class Feature {
 
         const userToss = toss(user.getId() + this.name);
 
-        console.log(user.getId(), userToss);
-
         const bucket = buckets.find(b => b[1] > userToss);
 
         return (bucket ? bucket[0] : feature.default) as Value;
