@@ -20,11 +20,10 @@
   },
   "homepage": "https://github.com/wix-incubator/rollouter#readme",
   "dependencies": {
-    "i": "^0.3.6",
-    "jekyll": "^3.0.0-beta1",
     "md5": "^2.2.1"
   },
   "devDependencies": {
+    "jekyll": "^3.0.0-beta1",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@types/jest": "^24.0.11",
