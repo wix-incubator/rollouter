@@ -7,9 +7,12 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.ts$/,
-				use: 'ts-loader',
-				exclude: /node_modules/
+				test: /^((?!\.spec).)*\.ts$/,
+				loader: 'ts-loader',
+				exclude: /node_modules/,
+				options: {
+					onlyCompileBundledFiles: true
+				}
 			}
 		]
 	},
