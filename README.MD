@@ -5,8 +5,13 @@ Cryptography based, feature toggle / AB-test library.
 Rollouter helps to roll out new features in a smart way. It requires no server and can be set up on the fly.
 The Idea behind rollouter is to ship consistent  AB-test test and feature toggle with the possibility to gradually increase audience reach.
 A user will not only consistent see the result of conduction. Also, the change of proportions will affect only users from 'A' bucket.
-A second important feature of rollouter is the different users will be directed to different splits on each experiment. 
+A second important feature of rollouter is the different users will be directed to different splits on each experiment.
 So there is no such problem as showing new features only to a certain group of users.
+
+## Live demo
+
+Try it on runkit https://runkit.com/vshuhaiev/rollouter-sample
+Simple config playgound https://wix-incubator.github.io/rollouter/
 
 ## Quick start
 
@@ -34,12 +39,11 @@ const config = {
     },
 };
 
-rollouter
+const configuredInstance = rollouter
     .config(config)
-    .user(user.id)
-    .conduct('feature1'); //true
 
-rollouter.conduct('feature2') //false
+console.log(`withUser: ${configuredInstance.user('someUserId').conduct('feature1')}`); //true
+console.log(`noUser: ${configuredInstance.conduct('feature2')}`); //false
 ```
 
 #### 50/50 Experiment
@@ -48,7 +52,7 @@ In the following case, 50% of users will receive `old version`, 20% and 30% for 
 import rollouter from 'rollouter';
 const config = {
     features:{
-        feature1:{
+        feature1: {
             default: 'old version',
             experiments: [{
                 variants: [{
@@ -56,7 +60,7 @@ const config = {
                     value: 'new value 1',
                 },{
                     slice: 0.3,
-                     value: 'new value 2',
+                    value: 'new value 2',
                 }],
             }],
         },
@@ -65,7 +69,7 @@ const config = {
 
 rollouter
     .config(config)
-    .user(user.id)
+    .user('user.id')
     .conduct('feature1');
 ```
 
@@ -104,7 +108,7 @@ const config = {
 
 rollouter
     .config(config)
-    .user(user.id, {'geo': 'US', eyes:'brown', registered: true})
-    .conduct('feature1');
+    .user('user.id', {'geo': 'US', eyes:'brown', registered: true})
+    .conduct('FancyButton');
 ```
 A new feature will see 10% of users from USA and UK except unregistered and all users with blue eyes. Please note that we do not consider user registration with blue eyes.
